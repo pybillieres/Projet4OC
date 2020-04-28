@@ -45,7 +45,7 @@ class Post
         return $this->_date;
     }
 //SETTERS/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function setId($id)//qui est ID ? Var uniquement dans la fonction ?
+    public function setId($id)
     {
         $id = (int) $id;
         if ($id > 0)

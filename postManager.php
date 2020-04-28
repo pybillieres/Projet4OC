@@ -10,7 +10,7 @@ class PostManager
 
     public function setDb()
     {
-        $db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');//mettre ca ailleur en mettant le try/catch
+        $db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');//mettre ca ailleur (ou ?)en mettant le try/catch
         $this->_db = $db;
         
     }
@@ -28,14 +28,15 @@ class PostManager
 
     public function readPost($id)//verifier le parametre avant de lancer la requete ?!
     {
-        $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?');
+        $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?'); //* pose pb ou pas ?
         $req->execute(array($id));
         return $req;
     }
 
-    public function readPosts()
+    public function readPosts()//combien de billet sur la page d'accueil ?
     {
-        
+        $req = $this->_db->query('SELECT * FROM post ORDER BY date DESC LIMIT 0,10');
+        return $req;
     }
 
     public function updatePost(Post $post)
@@ -55,4 +56,3 @@ class PostManager
 
 }
 
-//a quel endroit appeller le PDO

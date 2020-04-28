@@ -1,5 +1,5 @@
 <?php //ROUTEUR
-require('postController.php');
+require('postController.php');//bon ou autre moyen mieux ?
 
 if(isset($_GET['action']))
 {
