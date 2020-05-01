@@ -1,6 +1,4 @@
 <?php
-require('manager.php');
-
 class PostManager extends Manager
 {
     public function createPost($title, $content, $date)
@@ -17,7 +15,11 @@ class PostManager extends Manager
     {
         $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?'); //* pose pb ou pas ?
         $req->execute(array($id));
-        return $req;
+        while($row = $req->fetch())
+        {
+            $post = new Post($row);
+        }
+        return $post;
     }
 
     public function readPosts() //affiche les 10 derniers billets
