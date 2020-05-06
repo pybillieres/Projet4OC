@@ -5,15 +5,15 @@ use Pierre\P4\Autoloader;
 
 require_once 'Autoloader.php';
 require_once 'controller/PostController.php';
+require_once 'controller/HomeController.php';
 
-Autoloader::register(); //suffisant de le charger une seule fois ?
-
+Autoloader::register();
 
 if(isset($_GET['action']))
 {
     if($_GET['action'] == 'listPost')
     {
-        //Pierre\P4\controller\listPosts();
+        
     }
     elseif($_GET['action'] == 'post')
     {
@@ -35,6 +35,6 @@ if(isset($_GET['action']))
 
 else
 {
-    controller\post(1);
-
+    //controller\post(1);
+    Controller\listPosts();//comment eviter de devoir préciser le chemin du namespace
 }
