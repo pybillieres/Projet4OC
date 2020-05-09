@@ -15,11 +15,12 @@ abstract class Manager
         try
         {
         $db = new \PDO('mysql:host=localhost;dbname=projet4;charset=utf8', 'root', '');//mettre ca ailleur (ou ?)en mettant le try/catch
+        $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->_db = $db;
         }
-        catch (\Exception $e)
+        catch (\PDOException $e)
         {
-                die('Erreur : ' . $e->getMessage());
+                die('Erreur : ' . $e->getCode());
         }
 }
 }

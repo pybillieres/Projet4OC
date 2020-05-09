@@ -5,7 +5,6 @@ use Pierre\P4\Autoloader;
 
 require_once 'Autoloader.php';
 require_once 'controller/PostController.php';
-require_once 'controller/HomeController.php';
 
 Autoloader::register();
 

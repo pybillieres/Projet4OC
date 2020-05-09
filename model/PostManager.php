@@ -31,22 +31,15 @@ class PostManager extends Manager
 
     public function readPosts() //affiche les 10 derniers billets
     {
-        //$req = $this->_db->prepare('SELECT * FROM post ORDER BY date DESC LIMIT 0,10'); //* pose pb ou pas ?
-        //var_dump($req);
-        //$req->execute();
-        //var_dump($req);
-        //$req = $this->_db->query('SELECT * FROM post ORDER BY date DESC LIMIT 0,10');
-        //$data = $req ->fetch();
-        /*while($row = $req->fetch())
-        {
-            $post = new Post($row);
-            var_dump($post);
-        }
-        return $post;*/
-        $req = $this->_db->prepare('SELECT * FROM posts ORDER BY date DESC LIMIT 0,10'); //* pose pb ou pas ?
+        $req = $this->_db->prepare('SELECT * FROM posts ORDER BY date DESC LIMIT 0,10'); 
         var_dump($req);
         $req->execute();
-        $posts = $req->fetchall();
+        while($row = $req->fetch())
+        {
+            $post = new Post($row);
+            $posts[] = $post;
+        }
+
         return $posts;
     }
 
