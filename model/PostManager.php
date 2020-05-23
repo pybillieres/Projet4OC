@@ -19,7 +19,6 @@ class PostManager extends Manager
     {
         $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?'); //* pose pb ou pas ?
         $req->execute(array($id));
-        var_dump($req);
         while($row = $req->fetch())
         {
             $post = new Post($row);
@@ -30,7 +29,6 @@ class PostManager extends Manager
     public function readPosts() //affiche les 10 derniers billets
     {
         $req = $this->_db->prepare('SELECT * FROM posts ORDER BY date DESC LIMIT 0,10'); 
-        var_dump($req);
         $req->execute();
         while($row = $req->fetch())
         {

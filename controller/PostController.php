@@ -14,7 +14,6 @@ function post($id)
     $post = $postManager->readPost($id);
     $commentController = new CommentController;
     $comments = $commentController->listComment($id);
-    var_dump($comments);
     $view = new View;
     $view ->render('PostView',['post'=>$post, 'comments'=>$comments]);
 }
