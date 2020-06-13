@@ -1,17 +1,18 @@
 <?php
 namespace Pierre\P4\Controller;
 
-use Pierre\P4\controller\AdminController;
 use Pierre\P4\model\View;
 use Pierre\P4\Framework\Controller;
 use Pierre\P4\Model\UserManager;
-use Pierre\P4\Framework\Session;
+use Pierre\P4\Model\PostManager;
 
 class ConnectionController extends Controller
 {
     function index()
     {
-        $this->connectionView();
+
+            $this->connectionView();
+
     }
 
     function connectionView()//creer buildview dans la classe parente
@@ -34,8 +35,7 @@ class ConnectionController extends Controller
             {
                 $this->request->getSession()->setAttribut('userId', $user->id());//pourquoi acceder a la session via la requete et pas directement ?
                 $this->request->getSession()->setAttribut('login', $user->login());
-                $admin = new AdminController;
-                $admin->index();
+                $this->indexAdmin();
             }
             else
             {
@@ -45,6 +45,24 @@ class ConnectionController extends Controller
         else
         {
             echo 'remplir champs svp';
+        }
+    }
+
+    function indexAdmin()
+    {
+        var_dump($_SESSION);
+        var_dump($this);
+
+        if($this->checkSession())
+        {
+            $postManager = new PostManager;
+            $posts = $postManager->readPosts();
+            $view = new View;
+            $view->render('AdminIndexView', ['posts' =>$posts]);         
+        }
+        else
+        {
+            $this->index();
         }
     }
 

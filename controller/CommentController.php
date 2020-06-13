@@ -17,4 +17,21 @@ class CommentController extends Controller
         $listComments = $commentManager->readCommentsById($postId);
         return $listComments;
     }
+
+    function createComment()
+    {
+
+    }
+
+    function moderateComment()
+    {
+        if($this->checkSession())
+        {
+          
+        }
+        else
+        {
+            
+        }
+    }
 }

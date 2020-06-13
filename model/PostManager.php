@@ -5,13 +5,14 @@ use Pierre\P4\framework\Manager;
 
 class PostManager extends Manager
 {
-    public function createPost($title, $content, $date)
+    public function createPost(Post $post)// CREER AVEC PARAMETRE SEPARE OU DEPUIS OBJET POST ?
     {
-        $req = $this->_db->prepare('INSERT TO posts(title, content, date) VALUES(:title, :content, :date) ');
+        var_dump($post);
+        $req = $this->_db->prepare('INSERT INTO posts(title, content, date) VALUES(:title, :content, :date) ');
         $req->execute(array (
-            ':title'=>$title,
-            ':content'=>$content,
-            ':date'=>$date));
+            ':title'=>$post->title(),
+            ':content'=>$post->content(),
+            ':date'=>$post->date()));
         
     }
 
@@ -41,17 +42,19 @@ class PostManager extends Manager
 
     public function updatePost(Post $post)
     {
+        $req = $this->_db->prepare('UPDATE posts SET title=:title, content=:content WHERE id=:id'); 
+        $req->execute(array(':title'=>$post->title(),
+                            ':content'=>$post->content(),
+                            ':id'=>$post->id()));
+
+        
 
     }
 
-    public function deletePost(Post $post)
+    public function deletePost($id)
     {
-
-    }
-
-    public function count()
-    {
-
+        $req = $this->_db->prepare('DELETE FROM posts WHERE id=:id');
+        $req->execute(array(':id'=>$id));
     }
 
 }

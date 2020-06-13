@@ -27,6 +27,11 @@ abstract class Controller
    }
  }
 
+ public function checkSession()
+ {
+   var_dump("toto");
+  return $this->request->getSession()->existAttribut("userId");
+ }
 
  public abstract function index();
 

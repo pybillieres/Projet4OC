@@ -59,7 +59,7 @@ class Post extends ObjectClass
 
     public function setDate($date)
     {
-
+        $this->_date = $date;
     }
     
 

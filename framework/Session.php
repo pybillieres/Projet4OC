@@ -5,7 +5,7 @@ namespace Pierre\P4\Framework;
 class Session
 {
 
-    function createSession()
+    public function __construct()
     {
         session_start();
     }
@@ -21,7 +21,7 @@ class Session
     }
 
     function existAttribut($name)
-    {
+    {        
         return (isset($_SESSION[$name]) && $_SESSION[$name] != "");
     }
 

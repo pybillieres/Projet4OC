@@ -6,7 +6,6 @@ use Pierre\P4\Framework\Router;
 
 require_once('Autoloader.php');
 Autoloader::register();
-
 $router = new Router;
 $router->routeRequest();
 

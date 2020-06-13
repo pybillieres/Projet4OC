@@ -9,7 +9,7 @@
 <div id="comments" class="text-left" style="margin-left: 50px">
     <h3>Commentaires</h3>
     <?php
-    if(empty($comments) === TRUE){
+    if(empty($comments) != TRUE){
         foreach ($comments as $comment)
         {
             ?>

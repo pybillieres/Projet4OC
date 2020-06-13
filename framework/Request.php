@@ -20,7 +20,6 @@ class Request {
   
     public function getSession()
     {
-              var_dump($this->session);
         return $this->session;
 
     }
