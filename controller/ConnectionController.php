@@ -20,7 +20,7 @@ class ConnectionController extends Controller
         }
     }
 
-    function connectionView()//creer buildview dans la classe parente
+    function connectionView()
     {
         $view = new View;
         $view->render('ConnectionView');
@@ -35,21 +35,28 @@ class ConnectionController extends Controller
             $password = md5($this->request->parameter('password'));
             $userManager = new UserManager;
             $user = $userManager->getUserByLogin($login);
-
-            if($password === $user->password())
+            if($user !== null)
             {
-                $this->request->getSession()->setAttribut('userId', $user->id());//pourquoi acceder a la session via la requete et pas directement ?
-                $this->request->getSession()->setAttribut('login', $user->login());
-                $this->indexAdmin();
+                if($password === $user->password())
+                {
+                    $this->request->getSession()->setAttribut('userId', $user->id());//pourquoi acceder a la session via la requete et pas directement ?
+                    $this->request->getSession()->setAttribut('login', $user->login());
+                    $this->indexAdmin();
+                }
+                else
+                {
+                    $this->errorMsg('mot de passe ou login incorrect');
+                }
             }
             else
             {
-                echo 'pb dans le mdp';
-            }
+                $this->errorMsg('mot de passe ou login incorrect');
+            }    
         }
+            
         else
         {
-            echo 'remplir champs svp';
+            $this->errorMsg('Veuillez remplir les champs');
         }
     }
 
@@ -64,7 +71,7 @@ class ConnectionController extends Controller
         }
         else
         {
-            $this->index();
+            $this->connectionView();
         }
     }
 

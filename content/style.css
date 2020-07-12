@@ -6,3 +6,22 @@ body {
 {
   margin: 0 auto;
 }
+
+.homeBanner
+{
+
+  position: relative;
+}
+
+.homeTitle
+{
+  font-size: larger;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 20%;
+
+}
+
+
+

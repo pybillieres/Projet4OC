@@ -47,14 +47,12 @@ function createPost()
     }
     else
     {
-
+        $this->redirect('connection');
     }
 }
 
 function sendCreate()
 {
-    var_dump($_GET);
-    var_dump($_POST);
     if($this->checkSession())
     {
         $title=$this->request->Parameter('title');
@@ -68,7 +66,7 @@ function sendCreate()
     }
     else
     {
-        echo 'pas de seesion';
+        $this->redirect('connection');
     }
 }
 
@@ -81,14 +79,10 @@ function editPost()
         $post = $postManager->readPost($id);
         $view = new View;
         $view ->render('EditPostView',['post'=>$post]);
-        /*if($this->request->Parameter('action') === 'sendUpdate')
-        {
-            echo 'modif envoyé';
-        }*/
     }
     else
     {
-        echo 'pas de seesion';
+        $this->redirect('connection');
     }
 }
 
@@ -113,13 +107,12 @@ function deletePost()
         $id =$this->request->Parameter('id');
         $postManager = new PostManager;
         $post = $postManager->readPost($id);
-        var_dump($_GET);
         $view = new View;
         $view->render('DeletePostView', ['post'=>$post]);
     }
     else
     {
-        echo 'pas de seesion';
+        $this->redirect('connection');
     }
 }
 
@@ -127,7 +120,6 @@ function confirmDelete()
 {
     if($this->checkSession())
     {
-        var_dump($_GET);
         $id=$this->request->Parameter('id');
         $postManager = new PostManager;
         $commentManager = new CommentManager;
@@ -138,7 +130,7 @@ function confirmDelete()
     }
     else
     {
-        echo 'pas de seesion';
+        $this->redirect('connection');
     }
 }
 

@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     function index()
     {
-        echo 'titi';
+
     }
     function changePassword()
     {
@@ -32,16 +32,14 @@ class UserController extends Controller
                 $userId=$this->request->getSession()->getAttribut('userId');
                 $userManager = new UserManager;
                 $user = $userManager->getUserById($userId);
-                var_dump($user);
                 $user->setPassword(md5($newPassword));
-                var_dump($user);
                 $userManager->modifyPassword($user);
                 $this->redirect('connection');
 
             }
             else
             {
-
+                $this->errorMsg('Les deux mots de passe sont différents');
             }
         }
     }

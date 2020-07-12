@@ -1,5 +1,5 @@
 <?php
-$this->_title = 'toto';
+$this->_title = 'Connexion';
 ?>
 <a href='index.php' class="btn btn-primary">Retourner à la page d'accueil</a>
 <form method="post" action='index.php' class="mt-5 col-lg-4 formLogin text-center">

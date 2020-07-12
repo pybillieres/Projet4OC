@@ -13,7 +13,7 @@
     ?>
             <h4><?= htmlspecialchars($comment->author()); ?></h4>
             <p><?= htmlspecialchars($comment->content()); ?><br />
-                <a href="index.php?controller=comment&amp;action=reportComment&amp;id=<?= ($comment->id()) ?>">signaler le commentaire</a>
+                <a href="comment/reportComment/<?= ($comment->id()) ?>">signaler le commentaire</a>
             </p>
 
     <?php

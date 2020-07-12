@@ -10,9 +10,8 @@ class View
 
     public function render($template, $data = [])
     {
-        $this->file = "View/" . $template . ".php"; // Attribut file prend la valeur du template de page POURQUOI PAS BESOIN DE ../ ?
+        $this->file = "View/" . $template . ".php";
         $racineWeb = Configuration::get("racineWeb");
-        //$racineWeb = Configuration::get("racineWeb", "/");
         $content = $this->renderFile($this->file, $data);
         $view = $this->renderFile('View/Template.php', [
             'title'=>$this->_title,

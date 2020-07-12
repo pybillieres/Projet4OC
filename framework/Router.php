@@ -31,13 +31,9 @@ class Router {
       }
       $controllerClass = $controller . 'Controller';
       $controllerClassNamespace =  '\\Pierre\\P4\\Controller\\'.$controllerClass;
-      //if (file_exists($fichierControleur)) { Mettre cette verif dans l'autoload
         $controller = new $controllerClassNamespace;
         $controller->setRequest($request);
         return $controller;
-      //}
-      //else
-      //  throw new \Exception("Fichier '$fichierControleur' introuvable");
     }
   
 
@@ -51,7 +47,6 @@ class Router {
   
 
     private function manageError(\Exception $exception) {
-      //remplir vue en cas d'erreur
     }
   }
 

@@ -1,6 +1,17 @@
 
 <?php $this->_title = "Accueil"; ?>
 <div class="container">
+
+
+<div class="homeBanner mb-5" >
+    <img src="content/HomePageBanner.jpg" class='img-fluid' />
+    <div class="homeTitle" >
+    <h1>Billet simple pour l'Alaska</h1>
+    <p>Par Jean Forteroche</p>
+    </div>
+</div>
+
+
 <?php
 if (empty($posts) != TRUE) {
     foreach ($posts as $post)

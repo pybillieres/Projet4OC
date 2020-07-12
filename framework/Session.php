@@ -32,7 +32,7 @@ class Session
             return $_SESSION[$name];
         }
         else {
-            throw new \Exception("Attribut '$name' absent de la session");
+            throw new \Exception("attribut $name introuvable");
         }
     }
 }

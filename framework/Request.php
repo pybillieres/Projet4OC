@@ -9,7 +9,7 @@ class Request {
   
     public function __construct($parameters) 
     {
-      $this->parameters = $parameters;//array_merge GET POST
+      $this->parameters = $parameters;
       $this->session =  new Session;
     }
   

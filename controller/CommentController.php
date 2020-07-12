@@ -31,6 +31,7 @@ class CommentController extends Controller
         $comment = new Comment($data);
         $manager = new CommentManager;
         $manager->createComment($comment);
+        var_dump($idPost);
         $this->redirect('post', 'post', $idPost);
     }
 
@@ -41,7 +42,6 @@ class CommentController extends Controller
         $comment = $commentManager->readCommentById($id);
         $comment->setReported(1);
         $commentManager->updateComment($comment);
-        echo 'toto';
         $view = new View;
         $view->render('ReportCommentView', ['comment' => $comment]);
     }
@@ -54,7 +54,7 @@ class CommentController extends Controller
             $view = new View;
             $view->render('ModerateView', ['comments' => $comments]);
         } else {
-            echo 'pas toto';
+            $this->redirect('connection');
         }
     }
 
@@ -66,9 +66,9 @@ class CommentController extends Controller
             $comment = $commentManager->readCommentById($id);
             $comment->setReported(0);
             $commentManager->updateComment($comment);
-            $this->redirect('comment', 'moderateComment');
+            $this->redirect('comment', 'moderateComments');
         } else {
-            echo 'pas toto';
+            $this->redirect('connection');
         }
     }
 
@@ -78,8 +78,9 @@ class CommentController extends Controller
             $id = $this->request->Parameter('id');
             $commentManager = new CommentManager;
             $commentManager->deleteComment($id);
+            $this->redirect('comment', 'moderateComments');
         } else {
-            echo 'pas toto';
+            $this->redirect('connection');
         }
     }
 }

@@ -5,7 +5,7 @@ use Pierre\P4\Framework\Manager;
 
 class PostManager extends Manager
 {
-    public function createPost(Post $post)// CREER AVEC PARAMETRE SEPARE OU DEPUIS OBJET POST ?
+    public function createPost(Post $post)
     {
 $req = $this->_db->prepare('INSERT INTO posts(title, content, date) VALUES(:title, :content, :date) ');
         $req->execute(array (
@@ -15,9 +15,9 @@ $req = $this->_db->prepare('INSERT INTO posts(title, content, date) VALUES(:titl
         
     }
 
-    public function readPost($id)//verifier le parametre avant de lancer la requete ?!
+    public function readPost($id)
     {
-        $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?'); //* pose pb ou pas ?
+        $req = $this->_db->prepare('SELECT * FROM posts WHERE id=?');
         $req->execute(array($id));
         while($row = $req->fetch())
         {
@@ -26,7 +26,7 @@ $req = $this->_db->prepare('INSERT INTO posts(title, content, date) VALUES(:titl
         return $post;
     }
 
-    public function readPosts() //affiche les 10 derniers billets
+    public function readPosts()
     {
         $req = $this->_db->prepare('SELECT * FROM posts ORDER BY date DESC LIMIT 0,10'); 
         $req->execute();

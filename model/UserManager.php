@@ -28,16 +28,22 @@ class UserManager extends Manager
             public function getUserByLogin($login)
             {
                 $req = $this->_db->prepare('SELECT * FROM users WHERE login=?');
-                $req->execute(array($login));//prevoir cas ou login non trouvé, verifier qu'il n'y a qu'une seule ligne
+                $req->execute(array($login));
                 $row = $req->fetch();
+                if(is_bool($row) !== true)
+                {
                 $user = new User($row);
-                return $user;
+                return $user;   
+                }
+                
+
+                
             }
 
             public function getUserById($id)
             {
                 $req = $this->_db->prepare('SELECT * FROM users WHERE id=?');
-                $req->execute(array($id));//prevoir cas ou login non trouvé, verifier qu'il n'y a qu'une seule ligne
+                $req->execute(array($id));
                 $row = $req->fetch();
                 $user = new User($row);
                 return $user;

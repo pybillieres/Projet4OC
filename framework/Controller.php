@@ -6,9 +6,7 @@ use Pierre\P4\Model\View;
 
 abstract class Controller
 {
- // Action à réaliser
  private $action;
- // Requête entrante
  protected $request;
 
  public function setRequest(Request $request) {
@@ -34,11 +32,16 @@ abstract class Controller
 
  public abstract function index();
 
+ public function errorMsg($errorMsg)
+ {
+  $view = new View;
+  $view->render('ErrorView', ['errorMsg' => $errorMsg]); 
+ }
+
  protected function redirect($controller, $action='', $id='')
  {
   $racineWeb = Configuration::get("racineWeb", "/");
-  // redirection vers l'url racine_site/controller/action
-  header('Location: ' . $racineWeb . $controller . '/' . $action);
+  header('Location: ' . $racineWeb . $controller . '/' . $action . '/'.$id);
  }
 
 }

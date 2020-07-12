@@ -18,26 +18,20 @@ class Configuration {
     return $value;
   }
 
-  // Renvoie le tableau des paramètres en le chargeant au besoin
- /* private static function getParametres() {
-    if (self::$parametres == null) {
-      $cheminFichier = "Configuration/prod.ini";
-      if (!file_exists($cheminFichier)) {
-        $cheminFichier = "Configuration/dev.ini";
+private static function getParameters() {
+    if (self::$parameters == null) {
+      $filePath = "Configuration/prod.ini";
+      if (!file_exists($filePath)) {
+        $filePath = "Configuration/dev.ini";
       }
-      if (!file_exists($cheminFichier)) {
+      if (!file_exists($filePath)) {
         throw new \Exception("Aucun fichier de configuration trouvé");
       }
       else {
-        self::$parametres = parse_ini_file($cheminFichier);
+        self::$parameters = parse_ini_file($filePath);
       }
     }
-    return self::$parametres;
-  }*/
-  private static function getParameters()
-  {
-    $filePath = "configuration/dev.ini";
-    self::$parameters = parse_ini_file($filePath);
     return self::$parameters;
   }
+
 }
